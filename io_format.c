@@ -1,6 +1,8 @@
 #include "io_format.h"
 
-io_format::io_format()
+
+
+void format(char *str)
 {
 
 }

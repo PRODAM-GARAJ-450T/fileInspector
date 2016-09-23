@@ -2,10 +2,11 @@
 #define IO_FORMAT_H
 
 
-class io_format
-{
-public:
-  io_format();
-};
+#include <stdio.h>
+
+void input(char *str);
+void output(char str);
+void format(char *str);
+
 
 #endif // IO_FORMAT_H

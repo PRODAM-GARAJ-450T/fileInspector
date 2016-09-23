@@ -1,6 +1,7 @@
 #include "md5interfase.h"
 
-md5Interfase::md5Interfase()
-{
 
+int init()
+{
+  return MD5_Init(md5handler);
 }
