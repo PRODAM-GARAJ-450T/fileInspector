@@ -9,13 +9,12 @@
 
 typedef struct
 {
-  char *full;
+  char  *full;
   char **words;
-  int **size;
-  char endOf;
+  int    wordsCount;
 } strDitales;
 
 void set(char *full, strDitales *strD);
-char **destroyertowords(char *str, strDitales *strD);
+void destroyertowords(char *str, strDitales *strD);
 
 #endif // STRDESTROYER_H

@@ -4,66 +4,78 @@
 //{
 //  char *full;
 //  char **words;
-//  int **size;
-//  char endOf;
+//  int wordsCount;
 //} strDitales;
 
-char **destroyertowords(char *str, strDitales *strD)
+void strFromStr(char *str, char *word)
 {
-  char *dirs, word[32] = {0};
-  char c;
+  int length1 = 0,
+      length2 = 0;
+  char *subBuffer = {0};
+
+  length1 = strlen(str);
+
+  subBuffer = strstr( str, "/");
+  if( !subBuffer )
+    length2 = 0;
+  else
+    length2 = strlen(subBuffer);
+
+  strncpy(word, str, length1 - length2 );
+//  str = strstr( str, "/");
+}
+
+void destroyertowords(char *str, strDitales *strD)
+{
+  strD->full = (char*) malloc(strlen(str)+1);
+  strcpy(strD->full, str);
+
+  char word[32] = {0};
   int i = 0,
       length1 = 0,
       length2 = 0,
-      tile = 0,
       wordsCount = 0;
 
      char *p = str;
 
-     while ( (p = strchr( str, '/' ) ) )
+     while ( ( p = strchr( str, '/' ) ) )
+     {
+       ++p;
+       wordsCount++;
+       strD->words = (char**) realloc(strD->words, (wordsCount + 1) * sizeof(char*));
+       strFromStr( &str, &word);
+
+       while ( str != p )
        {
-         ++p;
-         wordsCount++;
-         strD->words = (char**) realloc(strD->words, (wordsCount + 1) * sizeof(char*));
-         //strtok( *str, "/\0\n");
-         length1 = strlen(str);
-         dirs = strstr( str, "/");
-         length2 = strlen(dirs);
+         *str++;
+       }
 
-       //  dirs = NULL;
-         strncpy(word, str, length1 - length2 );
+       strD->words[wordsCount] = (char*) malloc( length1 - length2 + 1 );
 
-         while ( str != p )
-         {
-           //strncpy(dirs/*, "%s"*/, str[0], i);
-//           putchar( *str++ );
-           *str++;
-           i++;
+       strcpy(strD->words[wordsCount], word);
 
-         }
+// todo del      printf("%s", strD->words[wordsCount]);
 
-         strD->words[wordsCount] = (char*) malloc( length1 - length2 + 1 );
-
-         strcpy(strD->words[wordsCount], word);
-
-         printf("%s", strD->words[wordsCount]);
-
-         putchar('\n');
+// todo del      putchar('\n');
      }
 
-
+     strFromStr( str, &word);
 
      while ( *str )
-       {
-         putchar( *str++ );
-       }
-     putchar('\n');
+     {
+       *str++;
+     }
 
-     for (int i = 0; i < wordsCount; ++i)
-       {
-        printf("strD->words[%i]: %s\n", i, strD->words[i]);
-       }
+     strD->words[wordsCount] = (char*) malloc( length1 - length2 + 1 );
 
+     strcpy(strD->words[wordsCount], word);
+     wordsCount++;
 
-  return dirs;
+     strD->wordsCount = wordsCount;
+//  todo del   printf("%s", strD->words[wordsCount]);
+
+//     for (int i = 0; i < wordsCount; ++i)
+//       {
+//        printf("strD->words[%i]: %s\n", i, strD->words[i]);
+//       }
 }
