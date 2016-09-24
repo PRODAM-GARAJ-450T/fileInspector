@@ -12,7 +12,7 @@ int strFromStr(char *str, char *word)
   int length1 = 0,
       length2 = 0,
       size = 0;
-  char *subBuffer = {0};
+  char *subBuffer = NULL;
 
   length1 = strlen(str);
 
@@ -44,7 +44,9 @@ void destroyertowords(char *str, strDitales *strD)
      {
        ++p;
        wordsCount++;
-       strD->words = (char**) realloc(strD->words, (wordsCount + 1) * sizeof(char*));
+       free(strD->words);
+       strD->words = (char**) malloc( (wordsCount + 1) * sizeof(char*) );
+//       strD->words = (char**) realloc(strD->words, (wordsCount + 1) * sizeof(char*));
        size = strFromStr( str, &word);
 
        while ( str != p )
@@ -52,7 +54,7 @@ void destroyertowords(char *str, strDitales *strD)
          *str++;
        }
 
-       strD->words[wordsCount] = (char*) malloc( size + 1 );
+       strD->words[wordsCount] = (char*) malloc( sizeof(char*) * (size+1) );
 
        strcpy(strD->words[wordsCount], word);
 
@@ -68,7 +70,7 @@ void destroyertowords(char *str, strDitales *strD)
        *str++;
      }
 
-     strD->words[wordsCount] = (char*) malloc( size + 1 );
+     strD->words[wordsCount] = (char*) malloc( sizeof(char*) * (size+1) );
 
      strcpy(strD->words[wordsCount], word);
 //     wordsCount++;
