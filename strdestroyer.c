@@ -19,6 +19,7 @@ char **destroyertowords(char *str, strDitales *strD)
       wordsCount = 0;
 
      char *p = str;
+
      while ( (p = strchr( str, '/' ) ) )
        {
          ++p;
@@ -31,17 +32,21 @@ char **destroyertowords(char *str, strDitales *strD)
 
        //  dirs = NULL;
          strncpy(word, str, length1 - length2 );
+
          while ( str != p )
          {
            //strncpy(dirs/*, "%s"*/, str[0], i);
-           putchar( *str++ );
+//           putchar( *str++ );
+           *str++;
            i++;
 
          }
 
-         strD->words[wordsCount] = (char*) malloc( i + 1 );
+         strD->words[wordsCount] = (char*) malloc( length1 - length2 + 1 );
 
          strcpy(strD->words[wordsCount], word);
+
+         printf("%s", strD->words[wordsCount]);
 
          putchar('\n');
      }
