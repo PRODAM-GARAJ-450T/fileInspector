@@ -7,6 +7,8 @@
 //  int wordsCount;
 //} strDitales;
 
+// qqqqq/wwwww/eeeeeee/rrrrrr
+
 int strFromStr(char *str, char *word)
 {
   int length1 = 0,
@@ -25,6 +27,7 @@ int strFromStr(char *str, char *word)
   size = length1 - length2;
 
   strncpy(word, str, size );
+  strcat( word, "\0" );
 //  str = strstr( str, "/");
   return size;
 }
@@ -58,7 +61,7 @@ void destroyertowords(char *str, strDitales *strD)
 
        strcpy(strD->words[wordsCount], word);
 
-/*// todo del */     printf("%s\n", strD->words[wordsCount]);
+// todo del      printf("%s\n", strD->words[wordsCount]);
 
 // todo del      putchar('\n');
      }
@@ -76,7 +79,7 @@ void destroyertowords(char *str, strDitales *strD)
 //     wordsCount++;
 
      strD->wordsCount = wordsCount;
-/*//  todo del*/  printf("%s\n", strD->words[wordsCount]);
+//  todo del  printf("%s\n", strD->words[wordsCount]);
 
 //     for (int i = 0; i < wordsCount; ++i)
 //       {
