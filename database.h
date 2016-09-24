@@ -4,25 +4,28 @@
 #include "io_format.h"
 #include "md5interfase.h"
 
-struct filebase
+typedef struct
 {
   int  id;
   char name[255];
   char type;
   int  parrent_id;
   unsigned long long int md5;
-};
+} filebase;
 
-void set(int id, char *name, char type, int parrent_id, struct filebase *base);
+//typedef filebase filebase_;
 
-int getId( struct filebase *base );
-char* getName( struct filebase *base );
-char getType( struct filebase *base );
-int  getParrentId( struct filebase *base );
-unsigned long long int get_md5( struct filebase *base );
 
-char* outFormat( struct filebase *base );
-void outputToFile( struct filebase *base );
-void outputToScreen( struct filebase *base);
+void set(int id, char *name, char type, int parrent_id, unsigned long long int md5, filebase *base);
+
+int getId(  filebase *base );
+char* getName(  filebase *base );
+char getType(  filebase *base );
+int  getParrentId(  filebase *base );
+unsigned long long int get_md5(  filebase *base );
+
+char* outFormat(  filebase *base );
+void outputToFile(  filebase *base );
+void outputToScreen(  filebase *base);
 
 #endif // DATABASE_H

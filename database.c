@@ -4,7 +4,7 @@
 void set(int id, char *name, char type, int parrent_id, unsigned long long md5, filebase *base)
 {
   base->id = id;
-  base->name =  name;
+  strcpy(base->name, name);
   base->type = type;
   base->parrent_id = parrent_id;
   base->md5 = md5;
