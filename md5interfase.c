@@ -1,7 +1,5 @@
 #include "md5interfase.h"
 
-using namespace md5_;
-
 
 int init()
 {
