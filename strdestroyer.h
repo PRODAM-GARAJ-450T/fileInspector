@@ -15,6 +15,7 @@ typedef struct
 } strDitales;
 
 void set(char *full, strDitales *strD);
-void destroyertowords(char *str, strDitales *strD);
-
+strDitales* destroyertowords(char *str);
+char** sliceString(const char* source, const char delimeter);
+char** sliceStringN(const char* source, const char delimeter, int *N);
 #endif // STRDESTROYER_H

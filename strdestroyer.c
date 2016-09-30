@@ -9,80 +9,112 @@
 
 // qqqqq/wwwww/eeeeeee/rrrrrr
 
-int strFromStr(char *str, char *word)
-{
-  int length1 = 0,
-      length2 = 0,
-      size = 0;
-  char *subBuffer = NULL;
+int charsCount(const char* source, const char character ) {
+  int count  = 0;
+  int i = 0;
+  while( source[i] != '\0' )
+  {
+    if( source[i] == character )
+    {
+        count++;
+    }
+    i++;
+  }
 
-  length1 = strlen(str);
-
-  subBuffer = strstr( str, "/");
-  if( !subBuffer )
-    length2 = 0;
-  else
-    length2 = strlen(subBuffer);
-
-  size = length1 - length2;
-
-  strncpy(word, str, size );
-  strcat( word, "\0" );
-//  str = strstr( str, "/");
-  return size;
+  return count;
 }
 
-void destroyertowords(char *str, strDitales *strD)
+void clearBuffer(char *buffer)
 {
-  strD->full = (char*) malloc(strlen(str)+1);
-  strcpy(strD->full, str);
-
-  char word[32] = {0};
-  int size = 0,
-      wordsCount = 0;
-
-     char *p = str;
-
-     while ( ( p = strchr( str, '/' ) ) )
-     {
-       ++p;
-       wordsCount++;
-       free(strD->words);
-       strD->words = (char**) malloc( (wordsCount + 1) * sizeof(char*) );
-//       strD->words = (char**) realloc(strD->words, (wordsCount + 1) * sizeof(char*));
-       size = strFromStr( str, &word);
-
-       while ( str != p )
-       {
-         *str++;
-       }
-
-       strD->words[wordsCount] = (char*) malloc( sizeof(char*) * (size+1) );
-
-       strcpy(strD->words[wordsCount], word);
-
-// todo del      printf("%s\n", strD->words[wordsCount]);
-
-// todo del      putchar('\n');
-     }
-
-     size = strFromStr( str, &word);
-
-     while ( *str )
-     {
-       *str++;
-     }
-
-     strD->words[wordsCount] = (char*) malloc( sizeof(char*) * (size+1) );
-
-     strcpy(strD->words[wordsCount], word);
-//     wordsCount++;
-
-     strD->wordsCount = wordsCount;
-//  todo del  printf("%s\n", strD->words[wordsCount]);
-
-//     for (int i = 0; i < wordsCount; ++i)
-//       {
-//        printf("strD->words[%i]: %s\n", i, strD->words[i]);
-//       }
+  int j = 0;
+  for (; j < 32; ++j)
+  {
+    buffer[j] = '\0';
+  }
 }
+
+char** sliceString(const char* source, const char delimeter)
+{
+  char** result = (char**)malloc( sizeof(char*) * (charsCount(source, delimeter) + 1) );
+  char buffer[32];
+  clearBuffer(&buffer);
+  int i = 0;
+  int partsCount = 0;
+  int substrLength = 0;
+
+  // /*
+  while( source[i] != '\0' )
+  {
+    if( source[i] == delimeter )
+    {
+      substrLength = 0;
+      result[partsCount] = (char*)malloc( strlen(buffer) * sizeof(char) );
+      strcpy(result[partsCount], buffer);
+      clearBuffer(&buffer);
+      partsCount++;
+    }
+    else
+    {
+      buffer[substrLength++] = source[i];
+    }
+    i++;
+  }
+  substrLength = 0;
+  result[partsCount] = (char*)malloc( strlen(buffer) * sizeof(char) );
+  strcpy(result[partsCount], buffer);
+  clearBuffer(&buffer);
+  partsCount++;
+  // */
+
+  return result;
+}
+// working ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+char **sliceStringN(const char *source, const char delimeter, int *N)
+{
+  char **result = (char**)malloc( sizeof(char*) * (charsCount(source, delimeter) + 1) );
+  char buffer[32];
+
+  clearBuffer(&buffer);
+
+  int i = 0,
+      partsCount = 0,
+      substrLength = 0;
+
+  // /*
+  while( source[i] != '\0' )
+  {
+    if( source[i] == delimeter )
+    {
+      substrLength = 0;
+      result[partsCount] = (char*)malloc( strlen(buffer) * sizeof(char) );
+      strcpy(result[partsCount], buffer);
+      clearBuffer(&buffer);
+      partsCount++;
+    }
+    else
+    {
+      buffer[substrLength++] = source[i];
+    }
+    i++;
+  }
+  substrLength = 0;
+  result[partsCount] = (char*)malloc( strlen(buffer) * sizeof(char) );
+  strcpy(result[partsCount], buffer);
+  clearBuffer(&buffer);
+  N = partsCount++;
+  // */
+
+  return result;
+}
+
+strDitales *destroyertowords(char *str)
+{
+  strDitales *strD;
+////      "test1/test2/test3/test4"
+//  char **x = sliceString(str, '/');
+
+//  while
+
+  return strD;
+}
+
