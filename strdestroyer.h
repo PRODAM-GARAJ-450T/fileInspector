@@ -14,8 +14,10 @@ typedef struct
   int    wordsCount;
 } strDitales;
 
+
 void set(char *full, strDitales *strD);
-strDitales* destroyertowords(char *str);
+char detectDelimeter( char *str, char *delimetersVariants );
 char** sliceString(const char* source, const char delimeter);
-char** sliceStringN(const char* source, const char delimeter, int *N);
+
+strDitales *strDistruct(char *str);
 #endif // STRDESTROYER_H
